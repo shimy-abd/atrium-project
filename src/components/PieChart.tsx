@@ -4,13 +4,30 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = () => {
+interface PieChartProps {
+  goals: { name: string; status: string }[];
+}
+
+const PieChart: React.FC<PieChartProps> = ({ goals }) => {
+  const statusCounts = goals.reduce(
+    (acc, goal) => {
+      acc[goal.status] = (acc[goal.status] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>
+  );
+
   const data = {
-    labels: ['On-boarding', '1:1 Sessions', 'Impact assessment', 'Complete'],
+    labels: ['Onboarding', '1:1 sessions', 'Complete', 'Impact Assessment'],
     datasets: [
       {
         label: 'Participant Progress',
-        data: [12, 19, 3, 5],
+        data: [
+          statusCounts['NS'] || 0,
+          statusCounts['IP'] || 0,
+          statusCounts['C'] || 0,
+          statusCounts['A'] || 0,
+        ],
         backgroundColor: [
           'rgba(250, 244, 237, 0.85)',
           'rgba(38, 0, 252, 0.85)',
