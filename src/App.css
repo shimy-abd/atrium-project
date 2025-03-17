@@ -5,3 +5,19 @@
   text-align: center;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.atrium-logo {
+  height: 50px;
+  margin-right: 10rem;
+}
+
+h1 {
+  margin: 0;
+}
+

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import PieChart from './components/PieChart';
+import atriumLogo from './assets/atrium-logo@2x.png';
 
 enum DevPlanGoalStatus {
   NOT_STARTED = 'NS',
@@ -27,7 +28,10 @@ function App() {
 
   return (
     <>
-      <h1>Participant Progress</h1>
+      <header>
+        <img src={atriumLogo} alt="Atrium Logo" className="atrium-logo" />
+      </header>
+      <h2>Participant Progress</h2>
       <PieChart goals={goals} />
     </>
   );
